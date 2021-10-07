@@ -10,16 +10,18 @@ def call(Map config = [:]) {
             currentBuild.displayName = "${env.APP_VERSION}.${env.APP_BUILD}"
             env.ENV_NAME = "${config.envName}"
         }
-        // checkout changelog: false, scm: [$class: 'GitSCM',
-        //     branches: [[name: "refs/heads/master"]],
-        //     doGenerateSubmoduleConfigurations: false,
-        //     extensions: [[$class: 'WipeWorkspace']],
-        //     submoduleCfg: [],
-        //     userRemoteConfigs: [[
-        //         url: 'https://github.com/ostov/jenkinsfile-delivery-pipeline-tests.git',
-        //         refspec: '+refs/heads/master:refs/remotes/origin/master',
-        //     ]]
-        // ]
+        /*
+        checkout changelog: false, scm: [$class: 'GitSCM',
+            branches: [[name: "refs/heads/master"]],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [[$class: 'WipeWorkspace']],
+            submoduleCfg: [],
+            userRemoteConfigs: [[
+                url: 'https://github.com/ostov/jenkinsfile-delivery-pipeline-tests.git',
+                refspec: '+refs/heads/master:refs/remotes/origin/master',
+            ]]
+        ]
+        */
         echo "Testing on ${config.envName}"
         sh '''
             echo "[INFO] Testing ${APP_VERSION}.${APP_BUILD} on ${ENV_NAME} ..."
