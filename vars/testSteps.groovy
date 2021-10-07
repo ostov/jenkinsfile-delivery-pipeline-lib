@@ -6,20 +6,23 @@ def call(Map config = [:]) {
 
     lock(resource: config.envName, inversePrecedence: true) {
         milestone config.lockMilestone
-        script { currentBuild.displayName = "${env.APP_VERSION}.${env.APP_BUILD}" }
+        script {
+            currentBuild.displayName = "${env.APP_VERSION}.${env.APP_BUILD}"
+            def env.ENV_NAME = ${config.envName}
+        }
         // checkout changelog: false, scm: [$class: 'GitSCM',
         //     branches: [[name: "refs/heads/master"]],
         //     doGenerateSubmoduleConfigurations: false,
         //     extensions: [[$class: 'WipeWorkspace']],
         //     submoduleCfg: [],
         //     userRemoteConfigs: [[
-        //         url: 'git@github.com:Calavista/wifi-indigo.git',
+        //         url: 'https://github.com/ostov/jenkinsfile-delivery-pipeline-tests.git',
         //         refspec: '+refs/heads/master:refs/remotes/origin/master',
         //     ]]
         // ]
         echo "Testing on ${config.envName}"
         sh '''
-            echo "[INFO] Testing ${APP_VERSION}.${APP_BUILD} on ${config.envName} ..."
+            echo "[INFO] Testing ${APP_VERSION}.${APP_BUILD} on ${env.ENV_NAME} ..."
         '''
         writeFile file: "target/test-results/test/TEST-${config.testName}.xml", text: """
             <testsuite tests="3">
