@@ -22,7 +22,7 @@ def call(Map config = [:]) {
         // ]
         echo "Testing on ${config.envName}"
         sh '''
-            echo "[INFO] Testing ${APP_VERSION}.${APP_BUILD} on ${env.ENV_NAME} ..."
+            echo "[INFO] Testing ${APP_VERSION}.${APP_BUILD} on ${ENV_NAME} ..."
         '''
         writeFile file: "target/test-results/test/TEST-${config.testName}.xml", text: """
             <testsuite tests="3">

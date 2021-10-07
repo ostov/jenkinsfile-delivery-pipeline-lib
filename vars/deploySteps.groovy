@@ -12,7 +12,7 @@ def call(Map config = [:]) {
         }
         cleanWs()
         copyArtifacts filter: 'artifact.txt', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
-        echo "Deploying ${env.APP_VERSION}.${env.APP_BUILD} to ${env.ENV_NAME}"
+        echo "Deploying ${env.APP_VERSION}.${env.APP_BUILD} to ${ENV_NAME}"
         sh '''
             echo "[INFO] Deploying ${APP_VERSION}.${APP_BUILD} to ${ENV_NAME} ..."
             cat artifact.txt
