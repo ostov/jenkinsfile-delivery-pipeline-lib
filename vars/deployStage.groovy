@@ -14,12 +14,15 @@ def call(Map config = [:]) {
         steps {
             lock(resource: config.envName, inversePrecedence: true) {
                 milestone config.lockMilestone
-                script { currentBuild.displayName = "${env.APP_VERSION}.${env.APP_BUILD}" }
+                script {
+                    currentBuild.displayName = "${env.APP_VERSION}.${env.APP_BUILD}"
+                    env.ENV_NAME = "${config.envName}"
+                }
                 cleanWs()
                 copyArtifacts filter: 'artifact.txt', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
                 echo "Deploying ${env.APP_VERSION}.${env.APP_BUILD} to ${config.envName}"
                 sh '''
-                    echo "[INFO] Deploying ${APP_VERSION}.${APP_BUILD} to ${config.envName} ..."
+                    echo "[INFO] Deploying ${APP_VERSION}.${APP_BUILD} to ${ENV_NAME} ..."
                     cat artifact.txt
                 '''
             }
