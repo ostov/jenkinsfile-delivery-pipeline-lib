@@ -21,11 +21,10 @@ def call(Map config = [:]) {
             env.ENV_NAME = "${config.envName}"
             env.TEST_NAME= "${config.testName}"
         }
-
         echo "Testing ${env.APP_VERSION}.${env.APP_BUILD} on ${config.envName}"
         sh '''
             echo "[INFO] Testing ${APP_VERSION}.${APP_BUILD} on ${ENV_NAME} ..."
-            chmod -x run_tests.sh
+            chmod +x run_tests.sh
             ./run_tests.sh FooBar
         '''
     }
