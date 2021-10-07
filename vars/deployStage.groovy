@@ -1,10 +1,11 @@
 def call(Map config [:]) {
+
   // String config.envName
   // int config.timeOut
   // int config.lockMilestone
   // int config.doneMilestone
-  def stageName = "Deploy to ${config.envName}"
-  stage(stageName) {
+
+  stage("Deploy to ${config.envName}") {
     options {
       skipDefaultCheckout()
       timeout(time: config.timeOut, unit: 'MINUTES')
