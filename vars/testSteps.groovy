@@ -8,7 +8,7 @@ def call(Map config = [:]) {
         milestone config.lockMilestone
         script {
             currentBuild.displayName = "${env.APP_VERSION}.${env.APP_BUILD}"
-            var.ENV_NAME = "${config.envName}"
+            env.ENV_NAME = "${config.envName}"
         }
         // checkout changelog: false, scm: [$class: 'GitSCM',
         //     branches: [[name: "refs/heads/master"]],
