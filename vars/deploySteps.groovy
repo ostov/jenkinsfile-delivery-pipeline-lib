@@ -1,4 +1,4 @@
-def call(Map config [:]) {
+def call(Map config = [:]) {
 
   // String config.envName
   // int config.lockMilestone
