@@ -8,7 +8,7 @@ def call(Map config = [:]) {
         milestone config.lockMilestone
         script {
             currentBuild.displayName = "${env.APP_VERSION}.${env.APP_BUILD}"
-            def ENV_NAME = "${config.envName}"
+            var.ENV_NAME = "${config.envName}"
         }
         cleanWs()
         copyArtifacts filter: 'artifact.txt', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
