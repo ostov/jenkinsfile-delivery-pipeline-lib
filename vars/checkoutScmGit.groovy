@@ -1,4 +1,4 @@
-def call(String gitUrl = "")
+def call(String gitURL = "")
 {checkout scm: [$class: 'GitSCM',
     branches: [[name: "refs/heads/master"]],
     doGenerateSubmoduleConfigurations: false,
