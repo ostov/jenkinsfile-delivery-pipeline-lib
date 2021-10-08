@@ -5,7 +5,7 @@ def call(String gitURL = "")
     extensions: [[$class: 'WipeWorkspace']],
     submoduleCfg: [],
     userRemoteConfigs: [[
-        url: gitUrl,
+        url: gitURL,
         refspec: '+refs/heads/master:refs/remotes/origin/master',
     ]]
 ]}

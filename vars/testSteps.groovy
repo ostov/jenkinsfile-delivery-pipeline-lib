@@ -3,6 +3,7 @@ def call(Map config = [:]) {
     // String config.envName
     // String config.testName
     // int config.lockMilestone
+    // String config.gitURL
 
     lock(resource: config.envName, inversePrecedence: true) {
         milestone config.lockMilestone
