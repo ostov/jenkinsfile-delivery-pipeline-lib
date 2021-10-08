@@ -6,7 +6,7 @@ def call(Map config = [:]) {
 
     lock(resource: config.envName, inversePrecedence: true) {
         milestone config.lockMilestone
-        checkout changelog: false, scm: [$class: 'GitSCM',
+        checkout scm: [$class: 'GitSCM',
             branches: [[name: "refs/heads/master"]],
             doGenerateSubmoduleConfigurations: false,
             extensions: [[$class: 'WipeWorkspace']],
